@@ -1,2 +1,16 @@
 /*宽与高*/
+/*字体大小与颜色*/
+/*定位垂直居中*/
+.centerY {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+/*定位水平垂直居中*/
+.centerXY {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /*# sourceMappingURL=mixin.css.map */

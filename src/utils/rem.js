@@ -9,7 +9,7 @@
     if (clientWidth >= 750) {
       domElement.style.fontSize = '100px'
     } else {
-      domElement.style.fontSize = 100 * (clientWidth / 750) + 'px'
+      domElement.style.fontSize = 20 * (clientWidth / 320) + 'px' // 此处进行相对尺寸的调节
     }
   }
 
