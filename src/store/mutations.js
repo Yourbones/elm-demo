@@ -7,7 +7,7 @@ import {
   RECORD_SHOPDETAIL,
   RECORD_USERINFO,
   GET_USERINFO,
-  CONFIRM_REMARK,
+  RECORD_REMARK,
   CONFIRM_INVOICE,
   CHOOSE_SEARCH_ADDRESS,
   SAVE_GEOHASH,
@@ -22,12 +22,12 @@ import {
   SAVE_ORDER,
   OUT_LOGIN,
   RETSET_NAME,
-  SAVE_AVANDER,
-  SAVE_ADDDETAIL,
-  SAVE_ADDRESS,
+  SAVE_AVATARURL,
+  SAVE_ADDNEWADDRESS,
+  REMOVE_ADDRESS,
   SAVE_QUESTION,
   ADD_ADDRESS,
-  BUY_CART
+  RECORD_CARDPRICE
 } from './mutation-type'
 
 import {setStore, getStore} from '../utils/common-methods'
@@ -150,7 +150,7 @@ export default {
     state.shop_id = shop_id;
   },
   // 记录订单页面用户选择的备注，传递给订单确认页面
-  [CONFIRM_REMARK] (state, {
+  [RECORD_REMARK] (state, {
     remarkText,
     inputText
   }) {
@@ -216,16 +216,16 @@ export default {
     state.isLogin  = false;
   },
   // 保存图片
-  [SAVE_AVANDER] (state, imgPath) {
+  [SAVE_AVATARURL] (state, imgPath) {
     state.avatarUrl = imgPath;
   },
-  // 删除地址列表
-  [SAVE_ADDRESS] (state, newAddress) {
-    state.removeAddress = newAddress;
+  // 删除地址列表a
+  [REMOVE_ADDRESS] (state, address) {
+    state.removeAddress = address;
   },
-  // 添加地址名
-  [SAVE_ADDDETAIL] (state, address) {
-    state.addAddress = address;
+  // 新增地址
+  [SAVE_ADDNEWADDRESS] (state, newAddress) {
+    state.addAddress = newAddress;
   },
   // 保存所选问题标题和详情
   [SAVE_QUESTION] (state, question) {
@@ -236,7 +236,7 @@ export default {
     state.removeAddress = [obj, ...state.removeAddress];
   },
   // 会员卡价格记录
-  [BUY_CART] (state, price) {
+  [RECORD_CARDPRICE] (state, price) {
     state.cardPrice = price;
   }
 
