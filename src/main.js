@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/router'
-import store from './store/store'
+import store from './store/index'
 import './utils/rem'
 
 Vue.config.productionTip = false
@@ -12,6 +12,6 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store,
+  store: store,
   render: h => h(App) // render 是渲染函数，渲染一个视图，然后提供给 el 挂载。vue 1.0 的写法是 component:'APP',template:<APP/>
 })
