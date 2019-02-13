@@ -34,20 +34,20 @@ import {setStore, getStore} from '../utils/common-methods'
 
 export default {
   // 记录当前经度纬度
-  [RECORD_ADDRESS] (state,{
+  [RECORD_ADDRESS] (state, {
     latitude,
-    longtitude
+    longitude
   }) {
-    state.latitude = latitude;
-    state.longtitude = longtitude;
+    state.latitude = latitude
+    state.longitude = longitude
   },
   // 记录商家详情信息
   [RECORD_SHOPDETAIL] (state, detail) {
-    state.shopDetail = detail;
+    state.shopDetail = detail
   },
   // 加入购物车
   [ADD_CART] (state, {
-    shopId,  // 店铺Id
+    shopId, // 店铺Id
     category_id, // 分类Id
     item_id, // 选择个体Id
     food_id, // 食物Id
@@ -56,29 +56,29 @@ export default {
     specs, // 食物规格
     packing_fee, // 食物打包费
     sku_id, // 食物规格？
-    stock   // 食物存量
+    stock // 食物存量
   }) {
-    let cart = state.cartList;
-    let shop = (cart[shopId] || {});
-    let category = (shop[category_id] || {});
-    let item = (category[item_id] || {});
+    let cart = state.cartList
+    let shop = (cart[shopId] || {})
+    let category = (shop[category_id] || {})
+    let item = (category[item_id] || {})
     if (item && item[food_id]) {
-      item[food_id]['num']++;
+      item[food_id]['num']++
     } else {
       item[food_id] = {
-        "num" : 1,
-        "id" : food_id,
-        "name" : name,
-        "price" : price,
-        "specs" : specs,
-        "packing_fee" : packing_fee,
-        "sku_id" : sku_id,
-        "stock" : stock
-      };
+        'num': 1,
+        'id': food_id,
+        'name': name,
+        'price': price,
+        'specs': specs,
+        'packing_fee': packing_fee,
+        'sku_id': sku_id,
+        'stock': stock
+      }
     }
-    state.cartList = {...cart};
-    //存入localStorage
-    setStore('buyCart', state.cartList);
+    state.cartList = {...cart}
+    // 存入localStorage
+    setStore('buyCart', state.cartList)
   },
   // 移出购物车
   [REDUCE_CART] (state, {
@@ -96,49 +96,49 @@ export default {
     let item = (category[item_id] || {})
     if (item && item[food_id]) {
       if (item[food_id]['num'] > 0) {
-        item[food_id]['num']--;
-        state.cartList = {...cart};
+        item[food_id]['num']--
+        state.cartList = {...cart}
         // 存入localStorage
-        setStore('buyCart', state.cartList);
+        setStore('buyCart', state.cartList)
       } else {
         // 商品数量为0，则清空当前商品的信息
-        item[food_id] = null;
+        item[food_id] = null
       }
     }
   },
   // 网页初始化时从本地缓存获取购物车数据
   [INIT_SHOOPINGCART] (state) {
-    let initCart = getStore('buyCart');
+    let initCart = getStore('buyCart')
     if (initCart) {
-      state.cartList = JSON.parse(initCart);
+      state.cartList = JSON.parse(initCart)
     }
   },
   // 清空当前商品的购物车信息
   [CLEAR_CART] (state, shop_id) {
-    state.cardList[shop_id] = null;
-    state.cardList = {...state.cardList};
-      // 存入localStorage
+    state.cardList[shop_id] = null
+    state.cardList = {...state.cardList}
+    // 存入localStorage
     setStore('buyCart', state.cardList)
   },
   // 记录用户信息
   [RECORD_USERINFO] (state, info) {
-    state.userInfo = info;
-    state.isLogin = true;
+    state.userInfo = info
+    state.isLogin = true
     // 把user_id存入localStorage
-    setStore('user_id', info.user_id);
+    setStore('user_id', info.user_id)
   },
   // 获取用户信息存入 Vuex
   [GET_USERINFO] (state, info) {
     if (state.userInfo && (state.userInfo.userName !== info.userName)) {
-      return;
+      return
     }
     if (!state.isLogin) {
-      return;
+      return
     }
     if (!info.message) {
-      state.userInfo = {...info};
+      state.userInfo = {...info}
     } else {
-      state.userInfo = null;
+      state.userInfo = null
     }
   },
   // 修改用户名
@@ -147,55 +147,55 @@ export default {
   },
   // 保存商家Id
   [SAVE_SHOPID] (state, shop_id) {
-    state.shop_id = shop_id;
+    state.shop_id = shop_id
   },
   // 记录订单页面用户选择的备注，传递给订单确认页面
   [RECORD_REMARK] (state, {
     remarkText,
     inputText
   }) {
-    state.remarkText = remarkText;
-    state.inputText = inputText;
+    state.remarkText = remarkText
+    state.inputText = inputText
   },
   // 是否开发票
   [CONFIRM_INVOICE] (state, invoice) {
-    state.isInvoice = invoice;
+    state.isInvoice = invoice
   },
   // 选择搜索的地址
   [CHOOSE_SEARCH_ADDRESS] (state, place) {
-    state.searchAddress = place;
+    state.searchAddress = place
   },
   // 保存 geohash
   [SAVE_GEOHASH] (state, geohash) {
-    state.geohash = geohash;
+    state.geohash = geohash
   },
   // 确认订单页添加新的地址
   [CONFIRM_ADDRESS] (state, newAddress) {
-    state.newAddress.push(newAddress);
+    state.newAddress.push(newAddress)
   },
   // 选择的地址
   [CHOOSE_ADDRESS] (state, {
     address,
     index
   }) {
-    state.choosedAddress = address;
-    state.addressIndex = index;
+    state.choosedAddress = address
+    state.addressIndex = index
   },
   // 保存下单需要验证的返回值
   [NEED_VALIDATION] (state, isNeedVali) {
-    state.isNeedVali = isNeedVali;
+    state.isNeedVali = isNeedVali
   },
   // 保存下单后购物id和sig
   [SAVE_CART_ID_SIG] (state, {
     cart_id,
     sig
   }) {
-    state.cartId = cart_id;
-    state.sig = sig;
+    state.cartId = cart_id
+    state.sig = sig
   },
   // 保存下单参数, 用户验证页面调用
   [SAVE_ORDER_PARAM] (state, orderParam) {
-    state.orderParam = orderParam;
+    state.orderParam = orderParam
   },
   // 修改下单参数
   [CHANGE_ORDER_PARAM] (state, newParam) {
@@ -203,64 +203,40 @@ export default {
   },
   // 下单成功，保存订单返回信息
   [ORDER_SUCCESS] (state, order) {
-    state.cardPrice = null;
-    state.orderBackMsg = order;
+    state.cardPrice = null
+    state.orderBackMsg = order
   },
   // 进入订单详情页前保存该订单信息
   [SAVE_ORDER] (state, orderDetail) {
-    state.orderDetail = orderDetail;
+    state.orderDetail = orderDetail
   },
   // 退出登录
   [OUT_LOGIN] (state) {
-    state.userInfo = {};
-    state.isLogin  = false;
+    state.userInfo = {}
+    state.isLogin = false
   },
   // 保存图片
   [SAVE_AVATARURL] (state, imgPath) {
-    state.avatarUrl = imgPath;
+    state.avatarUrl = imgPath
   },
   // 删除地址列表a
   [REMOVE_ADDRESS] (state, address) {
-    state.removeAddress = address;
+    state.removeAddress = address
   },
   // 新增地址
   [SAVE_ADDNEWADDRESS] (state, newAddress) {
-    state.addAddress = newAddress;
+    state.addAddress = newAddress
   },
   // 保存所选问题标题和详情
   [SAVE_QUESTION] (state, question) {
-    state.question = {...question};
+    state.question = {...question}
   },
   // 增加地址
   [ADD_ADDRESS] (state, obj) {
-    state.removeAddress = [obj, ...state.removeAddress];
+    state.removeAddress = [obj, ...state.removeAddress]
   },
   // 会员卡价格记录
   [RECORD_CARDPRICE] (state, price) {
-    state.cardPrice = price;
+    state.cardPrice = price
   }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -7,20 +7,19 @@ import {
   REMOVE_ADDRESS // 含义待定
 } from './mutation-type'
 
-export  default {
+export default {
 
-  async getUserInfo({
+  async getUserInfo ({
     commit
   }) {
-    let res = await getUser();
-    commit(GET_USERINFO, res);
+    let res = await getUser()
+    commit(GET_USERINFO, res)
   },
-  async saveAddress({
+  async saveAddress ({
     commit,
     state}) {
-    if (state.removeAddress.length > 0) return;
-
-    let address = await getAddressList(state.userInfo.user_id) ;
-    commit(REMOVE_ADDRESS, address);
+    if (state.removeAddress.length > 0) return
+    let address = await getAddressList(state.userInfo.user_id)
+    commit(REMOVE_ADDRESS, address)
   }
 }

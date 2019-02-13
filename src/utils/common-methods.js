@@ -4,9 +4,9 @@
 export const setStore = (name, content) => {
   if (!name) return
   if (typeof content !== 'string') {
-    content = JSON.stringify(content); // 当content不是字符串时，调用方法转化为json格式
+    content = JSON.stringify(content) // 当content不是字符串时，调用方法转化为json格式
   }
-  window.localStorage.setItem(name, content)    // 存入浏览器的localStorage
+  window.localStorage.setItem(name, content) // 存入浏览器的localStorage
 }
 
 /**
@@ -14,7 +14,7 @@ export const setStore = (name, content) => {
  */
 export const getStore = name => {
   if (!name) return
-  return window.localStorage.getItem(name);
+  return window.localStorage.getItem(name)
 }
 
 /**
