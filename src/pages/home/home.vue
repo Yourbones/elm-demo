@@ -5,16 +5,19 @@
     </head-top>
     <h1>欢迎来到绿洲，被选上的孩子们</h1>
     <p>{{author}}</p>
+    <tabbar></tabbar>
   </div>
 </template>
 
 <script>
 import headTop from '../../components/header/head'
+import tabbar from '../../components/tabbar/tabbar'
 
 export default {
   name: 'Home',
   components: {
-    headTop
+    headTop,
+    tabbar
   },
   data () {
     return {

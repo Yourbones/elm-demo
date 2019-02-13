@@ -26,6 +26,8 @@ module.exports = {
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     // 允许短横线写法
-    'camelcase': 'off'
+    'camelcase': 'off',
+    // 不校验缩进
+    'indent': 'off'
   }
 }

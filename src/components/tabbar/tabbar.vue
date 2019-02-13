@@ -1,5 +1,5 @@
 <template>
-  <section is="tabbar">
+  <section id="tabbar">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
          style="position:absolute;width:0;height:0">
       <defs>
@@ -148,28 +148,28 @@
       </defs>
     </svg>
     <section class="tabbar_item" @click="gotoAddress({path: '/takeaway', query: {geohash}})">
-      <svg>
+      <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('takeaway') == -1? '#takeaway' : '#takeawayActive'"></use>
-        <span>外卖</span>
       </svg>
+      <span>外卖</span>
     </section>
     <section class="tabbar_item" @click="gotoAddress({path: '/search/${geohash}'})">
-      <svg>
+      <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('search') == -1? '#search' : '#searchActive'"></use>
-        <span>搜索</span>
       </svg>
+      <span>搜索</span>
     </section>
     <section class="tabbar_item" @click="gotoAddress('/order')">
-      <svg>
+      <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('order') == -1? '#order' : '#orderActive'"></use>
-        <span>订单</span>
       </svg>
+      <span>订单</span>
     </section>
     <section class="tabbar_item" @click="gotoAddress('/profile')">
-      <svg>
+      <svg class="icon">
         <use xmlns:xlink="http://www.w3.org/1999/xlink" :xlink:href="$route.path.indexOf('profile') == -1? '#profile' : '#profileActive'"></use>
-        <span>我的</span>
       </svg>
+      <span>我的</span>
     </section>
   </section>
 </template>
@@ -180,7 +180,7 @@
   export default {
     name: 'tabbar',
     data () {
-
+      return {}
     },
     created () {
 
@@ -201,6 +201,34 @@
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+  @import (reference) '../../style/mixin';
 
+  #tabbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    .box-size(100%,1.95rem);
+    display: flex;
+    background-color: #fff;
+    box-shadow: 0 -0.026667rem 0.053333rem rgba(0, 0, 0, .1);
+  }
+
+  .tabbar_item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    text-align: center;
+    align-items: center;
+    .icon {
+      .box-size(.8rem, .8rem);
+      margin-top: .3rem;
+      fill: #CCC;
+    }
+    span {
+      .font(.45rem, #666);
+    }
+  }
 </style>
